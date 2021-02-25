@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Reactivities.Persistance;
+using SpinTheVinyl.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace Reactivities.Api
                 {
                     var context = services.GetRequiredService<DataContext>();
                     context.Database.Migrate();
+                    Seed.SeedData(context);
                 }
                 catch (Exception ex)
                 {
@@ -41,5 +43,6 @@ namespace Reactivities.Api
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
     }
 }

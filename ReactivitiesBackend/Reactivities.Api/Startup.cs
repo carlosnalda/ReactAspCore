@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
+using Reactivities.Application.Activities;
 
 namespace Reactivities.Api
 {
@@ -32,8 +33,8 @@ namespace Reactivities.Api
             {
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
             });
+            services.AddMediatR(typeof(List.Handler).Assembly);
             services.AddControllers();
-
             services.AddSwaggerGen(setupAction =>
             {
                 setupAction.SwaggerDoc("ReactivitiesOpenAPISpecification",
